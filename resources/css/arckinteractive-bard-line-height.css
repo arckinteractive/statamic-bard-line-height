@@ -1,0 +1,60 @@
+/* Class Type Styles */
+
+.fa-arck-line-height {
+    padding-bottom: 4px !important;
+}
+
+.fa-arck-line-height::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 16px;
+    margin-top: 3px;
+    background-image: url('/vendor/arckinteractive-bard-line-height/icons/line-height.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.arck-line-height-50 {
+    line-height: 0.5;
+}
+
+.arck-line-height-75 {
+    line-height: 0.75;
+}
+
+.arck-line-height-100 {
+    line-height: 1;
+}
+
+.arck-line-height-125 {
+    line-height: 1.25;
+}
+
+.arck-line-height-150 {
+    line-height: 1.5;
+}
+
+.arck-line-height-175 {
+    line-height: 1.75;
+}
+
+.arck-line-height-200 {
+    line-height: 2;
+}
+
+.arck-line-height-225 {
+    line-height: 2.25;
+}
+
+.arck-line-height-250 {
+    line-height: 2.5;
+}
+
+.arck-line-height-275 {
+    line-height: 2.75;
+}
+
+.arck-line-height-300 {
+    line-height: 3;
+}

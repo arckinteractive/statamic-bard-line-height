@@ -1,0 +1,20 @@
+{
+    "name": "arckinteractive/statamic-bard-line-height",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Arckinteractive\\StatamicBardLineHeight\\": "src"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Bard Line Height",
+            "description": "Statamic Bard Line Height addon"
+        },
+        "laravel": {
+            "providers": [
+                "Arckinteractive\\StatamicBardLineHeight\\ServiceProvider"
+            ]
+        }
+    }
+}
