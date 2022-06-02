@@ -2,8 +2,10 @@
 
 namespace Arckinteractive\StatamicBardLineHeight;
 
+use Illuminate\Support\Facades\Artisan;
 use Statamic\Fieldtypes\Bard\Augmentor;
 use Statamic\Providers\AddonServiceProvider;
+use Statamic\Statamic;
 
 class ServiceProvider extends AddonServiceProvider
 {
@@ -27,5 +29,9 @@ class ServiceProvider extends AddonServiceProvider
         $this->publishes([
             __DIR__ . '/../public' => public_path('vendor/arckinteractive-bard-line-height'),
         ], 'arckinteractive-bard-line-height');
+
+        Statamic::afterInstalled(function() {
+            Artisan::call('vendor:publish --tag=arckinteractive-bard-line-height');
+        });
     }
 }
