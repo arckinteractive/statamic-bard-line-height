@@ -62,7 +62,7 @@ export default {
             };
         },
         currentKey() {
-            return this.editor.getMarkAttrs('ArckLineHeight').key;
+            return this.editor.getAttributes('ArckLineHeight').key;
         }
     },
     data() {

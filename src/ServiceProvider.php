@@ -22,7 +22,7 @@ class ServiceProvider extends AddonServiceProvider
     public function boot()
     {
         parent::boot();
-        Augmentor::addMark(ArckLineHeight::class);
+        Augmentor::addExtension('ArckLineHeight', new ArckLineHeight);
 
         $this->publishes([
             __DIR__ . '/../public' => public_path('vendor/arckinteractive-bard-line-height'),

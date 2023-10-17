@@ -2,28 +2,26 @@
 
 namespace Arckinteractive\StatamicBardLineHeight;
 
-use ProseMirrorToHtml\Marks\Mark;
+use Tiptap\Core\Mark;
+use Tiptap\Utils\HTML;
 
 class ArckLineHeight extends Mark
 {
-    protected $markType = 'ArckLineHeight';
+    public static $name = 'ArckLineHeight';
     protected $tagName = 'span';
 
-    public function matching(): bool
+    public function renderHTML($mark, $attributes = [])
     {
-        return $this->mark->type === $this->markType;
-    }
+        $num = ((int) str_replace('arck-line-height-', '', $mark->attrs->key)) / 100;
 
-    public function tag(): ?array
-    {
-        $num = ((int) str_replace('arck-line-height-', '', $this->mark->attrs->key)) / 100;
         return [
             [
-                'tag'   => 'span',
-                'attrs' => [
+                'span',
+                HTML::mergeAttributes([
                     'class' => 'arck-line-height',
-                    'style' => 'line-height: ' . $num . ';'
-                ],
+                    'style' => 'line-height: ' . $num . ';',
+                ], $attributes),
+                0
             ],
         ];
     }
