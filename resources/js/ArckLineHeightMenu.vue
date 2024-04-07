@@ -62,7 +62,7 @@ export default {
             };
         },
         currentKey() {
-            return this.editor.getMarkAttrs('ArckLineHeight').key;
+            return this.editor.getAttributes('ArckLineHeight').key;
         }
     },
     data() {
@@ -77,7 +77,7 @@ export default {
         },
         setClassType(classTypeKey) {
             // update the editor
-            this.editor.commands.ArckLineHeight({
+            this.editor.commands.toggleArckLineHeight({
                 key: classTypeKey == this.currentKey ? false : classTypeKey
             })
             // hide the menu

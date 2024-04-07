@@ -1,52 +1,54 @@
-export default class ArckLineHeight {
-    name() {
-        return "ArckLineHeight";
-    }
+const { Mark } = Statamic.$bard.tiptap.core;
 
-    schema() {
+export const ArckLineHeight = Mark.create({
+
+    name: "ArckLineHeight",
+
+    addAttributes() {
         return {
-            attrs: {
-                key: '',
+            key: {
+                default: '',
+                parseHTML: element => {element.querySelector('span.arck-line-height')?.getAttribute('data-class')},
             },
-            parseDOM: [
-                {
-                    tag: "span.arck-line-height",
-                    getAttrs: (dom) => ({
-                        key: dom.getAttribute('data-class')
-                    })
-                }
-            ],
-            toDOM: (mark) => {
-                const num = parseInt(mark.attrs.key.replace('arck-line-height-', '')) / 100;
-                
-                return [
-                    "span",
-                    {
-                        'class': 'arck-line-height',
-                        'data-class': mark.attrs.key,
-                        'style': `line-height: ${num};`
-                    },
-                    0,
-                ];
-            }
-        };
-    }
 
-    commands({type, updateMark, removeMark}) {
-        return attrs => {
-            if (attrs.key) {
-                return updateMark(type, attrs)
-            }
-
-            return removeMark(type)
         }
-    }
+    },
 
-    pasteRules({type}) {
-        return [];
-    }
+    parseHTML() {
+        return [
+            {
+                tag: 'span.arck-line-height'
+            },
+        ]
+    },
 
-    plugins() {
-        return [];
-    }
-}
+    renderHTML({ HTMLAttributes }) {
+        const num = parseInt(HTMLAttributes.key.replace('arck-line-height-', '')) / 100;
+        return [
+            'span',
+            {
+                ...HTMLAttributes,
+                class: 'arck-line-height',
+                'data-class': HTMLAttributes.key,
+                'style': `line-height: ${num};`
+            },
+            0
+        ]
+    },
+
+    addCommands() {
+        return {
+            toggleArckLineHeight: attributes => ({ chain }) => {
+                if (attributes.key) {
+                    return chain()
+                        .setMark(this.name, attributes)
+                        .run()
+                }
+
+                return chain()
+                    .unsetMark(this.name, { extendEmptyMarkRange: true })
+                    .run()
+            },
+        }
+    },
+})
